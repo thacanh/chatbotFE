@@ -75,7 +75,7 @@ function ChatInterface() {
               <div className="w-20 h-20 rounded-full bg-primary/10 flex items-center justify-center mb-6">
                 <Scale className="h-10 w-10 text-primary" />
               </div>
-              <h3 className="text-xl font-medium text-gray-800 mb-2">Chào mừng đến với Tư Vấn Luật Lao Động</h3>
+              <h3 className="text-xl font-medium text-gray-800 mb-2">Chào mừng đến với LAB-Support</h3>
               <p className="text-gray-500 max-w-md">
                 Hãy đặt câu hỏi về Luật Lao động để được hỗ trợ. Tôi có thể giúp bạn hiểu rõ về quyền lợi và nghĩa
                 vụ của mình.

@@ -50,10 +50,12 @@ function MainLayout() {
     <div className="h-full flex flex-col">
       <div className="px-3 py-6 border-b">
         <div className="flex items-center gap-3 mb-2">
-          <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center">
-            <Briefcase className="h-5 w-5 text-primary" />
-          </div>
-          <h2 className="text-xl font-bold text-primary">Tư Vấn Luật Lao Động</h2>
+          <img
+            src="/logo.png"
+            alt="Icon"
+            className="h-12 w-12 object-contain filter"
+          />
+          <h2 className="text-xl font-bold text-primary">LAB-Support</h2>
         </div>
         <p className="text-sm text-muted-foreground">Hỗ trợ tư vấn và soạn thảo văn bản pháp lý</p>
       </div>
