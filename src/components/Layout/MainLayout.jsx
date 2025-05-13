@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import { Menu, ChevronRight, BookOpen, Briefcase } from "lucide-react";
+import { Menu, ChevronRight, BookOpen} from "lucide-react";
 import { Button } from "../ui/Button";
 import { Card } from "../ui/Card";
 import { Sheet, SheetContent, SheetTrigger } from "../ui/Sheet";

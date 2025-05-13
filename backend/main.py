@@ -34,6 +34,9 @@ from langchain_community.vectorstores import Neo4jVector
 from langchain_google_genai import GoogleGenerativeAIEmbeddings
 import logging
 
+# Import document API router
+from document_api import router as document_router
+
 # Set up logging
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
@@ -55,6 +58,9 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+# Include document API router
+app.include_router(document_router, prefix="/api/documents", tags=["documents"])
 
 # Connect to Neo4j
 graph = None
@@ -418,8 +424,8 @@ def setup_chain():
     Yêu cầu:
     1. Đưa ra câu trả lời trực tiếp và rõ ràng cho câu hỏi (Có/Không/Phụ thuộc vào...) nếu có thể
     2. Viện dẫn điều khoản luật cụ thể từ phân tích sơ bộ (nếu có)
-    3. Giải thích mức độ vi phạm pháp luật và hậu quả pháp lý
-    4. Đề xuất cách thức người lao động có thể bảo vệ quyền lợi của mình
+    3. Giải thích mức độ vi phạm pháp luật và hậu quả pháp lý (nếu có liên quan đến vi phạm pháp luật)
+    4. Đề xuất cách thức người lao động có thể bảo vệ quyền lợi của mình (nếu cần)
     5. Tóm tắt kết luận cuối cùng
 
     Trả lời cuối cùng:"""

@@ -1,12 +1,6 @@
 import {
-    MessageCircle,
     FileText,
     FileSpreadsheet,
-    Menu,
-    Send,
-    ChevronRight,
-    BookOpen,
-    Briefcase,
     Scale,
   } from "lucide-react";
   

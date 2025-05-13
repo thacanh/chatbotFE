@@ -14,8 +14,60 @@ function ChatInterface() {
   const handleInputChange = (e) => {
     setInput(e.target.value);
   };
+
+  // Function to format message content
+  const formatMessage = (content) => {
+    // First replace literal \n with actual newlines
+    const contentWithNewlines = content.replace(/\\n/g, '\n');
+    
+    // Split by actual newlines and process each line
+    return contentWithNewlines.split('\n').map((line, lineIndex) => {
+      // Skip empty lines
+      if (!line.trim()) {
+        return <br key={lineIndex} />;
+      }
+
+      // Process bold text within each line
+      const parts = line.split(/(\*\*.*?\*\*)/g).map((part, partIndex) => {
+        if (part.startsWith('**') && part.endsWith('**')) {
+          // Remove ** and wrap in strong tag with custom styling
+          const text = part.slice(2, -2);
+          // Check if it's a numbered section (e.g., "1. Câu trả lời trực tiếp:")
+          if (/^\d+\.\s/.test(text)) {
+            return (
+              <strong key={partIndex} className="text-lg text-gray-900 block mb-2">
+                {text}
+              </strong>
+            );
+          }
+          // Check if it's a bullet point
+          if (text.startsWith('*')) {
+            return (
+              <strong key={partIndex} className="text-gray-900">
+                {text}
+              </strong>
+            );
+          }
+          // Regular bold text
+          return (
+            <strong key={partIndex} className="text-gray-900">
+              {text}
+            </strong>
+          );
+        }
+        return part;
+      });
+
+      // Return line with its parts
+      return (
+        <div key={lineIndex} className="mb-2">
+          {parts}
+        </div>
+      );
+    });
+  };
   
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     
     if (!input.trim()) return;
@@ -31,33 +83,44 @@ function ChatInterface() {
     setInput("");
     setIsLoading(true);
     
-    // Simulate bot response after a short delay
-    setTimeout(() => {
+    try {
+      // Call the backend API
+      const response = await fetch("http://localhost:8000/chat", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          question: input,
+          chat_history: messages.map(msg => [msg.role === "user" ? msg.content : null, msg.role === "bot" ? msg.content : null]).filter(([user, bot]) => user && bot)
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error("Failed to get response from server");
+      }
+
+      const data = await response.json();
+      
+      // Add bot response
       const botMessage = {
         id: uuidv4(),
         role: "bot",
-        content: generateBotResponse(input),
+        content: data.answer,
       };
       
       setMessages((prev) => [...prev, botMessage]);
+    } catch (error) {
+      console.error("Error:", error);
+      // Add error message
+      const errorMessage = {
+        id: uuidv4(),
+        role: "bot",
+        content: "Xin lỗi, đã có lỗi xảy ra khi xử lý câu hỏi của bạn. Vui lòng thử lại sau.",
+      };
+      setMessages((prev) => [...prev, errorMessage]);
+    } finally {
       setIsLoading(false);
-    }, 1000);
-  };
-  
-  // Very simple bot response generator
-  const generateBotResponse = (userInput) => {
-    const input = userInput.toLowerCase();
-    
-    if (input.includes("thử việc")) {
-      return "Theo Điều 24 Bộ luật Lao động 2019, thời gian thử việc không quá 180 ngày đối với công việc của người quản lý doanh nghiệp, không quá 60 ngày đối với công việc có chức danh nghề cần trình độ chuyên môn từ cao đẳng trở lên, không quá 30 ngày đối với công việc có chức danh nghề cần trình độ chuyên môn trung cấp và không quá 6 ngày làm việc đối với công việc khác.";
-    } else if (input.includes("nghỉ phép") || input.includes("phép năm")) {
-      return "Theo Điều 113 Bộ luật Lao động 2019, người lao động được nghỉ hằng năm, hưởng nguyên lương theo hợp đồng lao động như sau: 12 ngày làm việc đối với người làm việc từ đủ 12 tháng đến dưới 5 năm; 13 ngày làm việc đối với người làm việc từ đủ 5 năm đến dưới 10 năm; 14 ngày làm việc đối với người làm việc từ đủ 10 năm đến dưới 20 năm; 16 ngày làm việc đối với người làm việc từ đủ 20 năm trở lên.";
-    } else if (input.includes("trợ cấp thôi việc")) {
-      return "Theo Điều 46 Bộ luật Lao động 2019, trợ cấp thôi việc được tính bằng 1/2 tháng tiền lương bình quân cho mỗi năm làm việc. Tiền lương làm căn cứ tính trợ cấp là tiền lương bình quân theo hợp đồng lao động của 6 tháng liền kề trước khi người lao động thôi việc.";
-    } else if (input.includes("làm thêm giờ")) {
-      return "Theo Điều 107 Bộ luật Lao động 2019, số giờ làm thêm không quá 50% số giờ làm việc bình thường trong 1 ngày; trường hợp áp dụng quy định giờ làm việc bình thường theo tuần thì tổng số giờ làm việc bình thường và số giờ làm thêm không quá 12 giờ trong 1 ngày; không quá 40 giờ trong 1 tháng và tổng số không quá 200 giờ trong 1 năm.";
-    } else {
-      return "Cảm ơn câu hỏi của bạn. Đây là thông tin dựa trên Bộ luật Lao động 2019. Để biết thêm chi tiết cụ thể về vấn đề này, bạn có thể tham khảo Bộ luật Lao động hoặc hỏi thêm câu hỏi cụ thể hơn.";
     }
   };
 
@@ -120,13 +183,13 @@ function ChatInterface() {
                       </div>
                     )}
                     <div
-                      className={`max-w-[80%] rounded-lg p-3 ${
+                      className={`max-w-[80%] rounded-lg p-4 ${
                         message.role === "user"
                           ? "bg-primary text-primary-foreground rounded-tr-none"
                           : "bg-gray-100 text-gray-800 rounded-tl-none"
                       }`}
                     >
-                      {message.content}
+                      {message.role === "user" ? message.content : formatMessage(message.content)}
                     </div>
                     {message.role === "user" && (
                       <div className="w-8 h-8 rounded-full bg-primary flex items-center justify-center ml-2 flex-shrink-0">
