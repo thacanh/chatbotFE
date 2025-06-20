@@ -403,13 +403,12 @@ Dữ liệu không cấu trúc:
     {initial_response}
 
     Yêu cầu:
-    1. Đưa ra câu trả lời trực tiếp và rõ ràng cho câu hỏi (Có/Không/Phụ thuộc vào...) nếu có thể
-    2. Viện dẫn điều khoản luật cụ thể từ phân tích sơ bộ (nếu có)
-    3. Giải thích mức độ vi phạm pháp luật và hậu quả pháp lý (nếu có liên quan đến vi phạm pháp luật)
-    4. Đề xuất cách thức người lao động có thể bảo vệ quyền lợi của mình (nếu cần)
-    5. Tóm tắt kết luận cuối cùng
+    1. Trả lời chính xác dựa trên tài liệu
+    2. Trích dẫn điều luật cụ thể
+    3. Giải thích rõ ràng, dễ hiểu
+    4. Cấu trúc: Trả lời → Căn cứ pháp lý → Lưu ý
 
-    Trả lời cuối cùng:"""
+    Trả lời:"""
 
     output_processing_prompt = ChatPromptTemplate.from_template(output_processing_template)
 
