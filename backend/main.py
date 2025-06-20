@@ -33,12 +33,20 @@ from langchain_experimental.graph_transformers import LLMGraphTransformer
 from langchain_community.vectorstores import Neo4jVector
 from langchain_google_genai import GoogleGenerativeAIEmbeddings
 import logging
+import sys
 
 # Import document API router
 from document_api import router as document_router
 
-# Set up logging
-logging.basicConfig(level=logging.INFO)
+# Set up logging with UTF-8
+logging.basicConfig(
+    level=logging.INFO,
+    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
+    handlers=[
+        logging.StreamHandler(sys.stdout),
+        logging.FileHandler('app.log', encoding='utf-8')
+    ]
+)
 logger = logging.getLogger(__name__)
 logging.getLogger("neo4j.notifications").setLevel(logging.ERROR)
 
@@ -53,7 +61,7 @@ app = FastAPI(
 # Add CORS middleware
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  # For production, specify actual origins
+    allow_origins=["*"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -68,45 +76,36 @@ vector_index = None
 llm = None
 chain = None
 
-
 # Pydantic models for API
 class Message(BaseModel):
     role: str
     content: str
 
-
 class ChatHistory(BaseModel):
     messages: List[Message] = []
-
 
 class ChatRequest(BaseModel):
     question: str
     chat_history: Optional[List[Tuple[str, str]]] = []
 
-
 class ChatResponse(BaseModel):
     answer: str
     processing_time: float = 0.0
-
 
 class ErrorResponse(BaseModel):
     detail: str
     status_code: int
 
-
 class HealthResponse(BaseModel):
     status: str
     components: Dict[str, bool]
 
-
-# Define LangChain models
+# Define LangChain models - SIMPLIFIED
 class QuestionAnalysis(LCBaseModel):
-    """Phân tích câu hỏi đầu vào."""
+    """Phân tích câu hỏi đầu vào - KHÔNG tạo factual questions."""
     original_question: str = Field(..., description="Câu hỏi gốc từ người dùng")
     is_situational: bool = Field(..., description="Đây có phải là câu hỏi tình huống không?")
-    factual_questions: List[str] = Field(..., description="Danh sách các câu hỏi thực tế cần tìm kiếm để trả lời câu hỏi gốc")
     key_legal_concepts: List[str] = Field(..., description="Các khái niệm pháp lý chính liên quan đến câu hỏi")
-
 
 class Entities(LCBaseModel):
     """Thông tin nhận diện về các thực thể."""
@@ -115,7 +114,6 @@ class Entities(LCBaseModel):
         description="Tất cả các thực thể là người, khái niệm thời gian, tổ chức, doanh nghiệp hoặc khái niệm pháp lý "
         "xuất hiện trong văn bản",
     )
-
 
 def initialize_components():
     global graph, vector_index, llm, chain
@@ -159,26 +157,22 @@ def initialize_components():
 
     logger.info("Components initialized successfully")
 
-
 def setup_chain():
     global chain
 
-    # Question analysis prompt
+    # SIMPLIFIED Question analysis prompt - NO factual questions
     question_analysis_prompt = ChatPromptTemplate.from_messages([
         (
             "system",
             """Bạn là một chuyên gia phân tích câu hỏi pháp luật lao động.
-            Nhiệm vụ của bạn là phân tích câu hỏi của người dùng, xác định xem đó có phải là câu hỏi tình huống hay không,
-            và chuyển đổi nó thành các câu hỏi thực tế về luật mà có thể được tìm kiếm trong cơ sở dữ liệu.
+            Nhiệm vụ của bạn là phân tích câu hỏi của người dùng và xác định:
+            1. Đây có phải là câu hỏi tình huống hay không
+            2. Các khái niệm pháp lý chính trong câu hỏi
 
             Câu hỏi tình huống là câu hỏi mô tả một tình huống cụ thể và hỏi về hậu quả pháp lý hoặc quyền lợi.
             Ví dụ: "Nếu tôi bị buộc làm việc không lương, tôi có thể làm gì?"
 
-            Khi nhận được câu hỏi tình huống, hãy tạo danh sách các câu hỏi thực tế liên quan đến:
-            1. Quy định pháp luật liên quan đến tình huống
-            2. Hình phạt hoặc chế tài cho hành vi vi phạm
-            3. Quyền lợi của người lao động trong tình huống đó
-            4. Thủ tục khiếu nại hoặc tố cáo
+            KHÔNG cần tạo các câu hỏi con hay factual questions.
             """
         ),
         ("human", "Phân tích câu hỏi sau: {question}")
@@ -294,8 +288,8 @@ def setup_chain():
 
     def structured_retriever(question: str, analysis=None) -> str:
         """
-        Retrieve information about entities mentioned
-        in the question and adjacent nodes in the knowledge graph
+        Retrieve information about entities mentioned in the question 
+        and adjacent nodes in the knowledge graph
         """
         result = ""
 
@@ -304,11 +298,6 @@ def setup_chain():
             entities_from_analysis = entity_chain.invoke({"question": question}).names
             # Add legal concepts from analysis
             all_entities = entities_from_analysis + analysis.key_legal_concepts
-
-            # Add entities from factual questions
-            for factual_q in analysis.factual_questions:
-                factual_entities = entity_chain.invoke({"question": factual_q}).names
-                all_entities.extend(factual_entities)
         else:
             # Use old method if no analysis
             entities = entity_chain.invoke({"question": question})
@@ -351,40 +340,32 @@ def setup_chain():
         return result
 
     def enhanced_retriever(question: str):
-        """Enhanced retriever with Gemini analysis"""
-        logger.info(f"Search query: {question}")
+        """Enhanced retriever - NO factual questions generation"""
+        logger.info(f"Search query: {question[:100]}...")
 
-        # Analyze question with Gemini
+        # Analyze question with Gemini - ONLY for situational detection and key concepts
         analysis = question_analyzer.invoke({"question": question})
-        logger.info(f"Question analysis: {analysis}")
+        logger.info(f"Question analysis: situational={analysis.is_situational}, concepts={analysis.key_legal_concepts}")
 
         # Structured query with analysis information
         structured_data = structured_retriever(question, analysis)
 
-        # Vector search for each factual question
+        # Vector search for the original question ONLY
         unstructured_data = [el.page_content for el in vector_index.similarity_search(question)]
 
-        # If it's a situational question, perform additional searches
-        if analysis.is_situational:
-            for factual_q in analysis.factual_questions:
-                additional_docs = vector_index.similarity_search(factual_q)
-                unstructured_data.extend([el.page_content for el in additional_docs])
-
-        # Remove duplicates
-        unstructured_data = list(set(unstructured_data))
+        # NO additional searches for factual questions - this was the bottleneck!
 
         final_data = f"""Câu hỏi gốc: {question}
 
-    Phân tích:
-    - Câu hỏi tình huống: {"Có" if analysis.is_situational else "Không"}
-    - Khái niệm pháp lý liên quan: {", ".join(analysis.key_legal_concepts)}
-    - Câu hỏi thực tế cần tìm: {", ".join(analysis.factual_questions)}
+Phân tích:
+- Câu hỏi tình huống: {"Có" if analysis.is_situational else "Không"}
+- Khái niệm pháp lý liên quan: {", ".join(analysis.key_legal_concepts)}
 
-    Dữ liệu có cấu trúc:
-    {structured_data}
+Dữ liệu có cấu trúc:
+{structured_data}
 
-    Dữ liệu không cấu trúc:
-    {"#Document ".join(unstructured_data)}
+Dữ liệu không cấu trúc:
+{"#Document ".join(unstructured_data)}
         """
         return final_data
 
@@ -473,25 +454,18 @@ def setup_chain():
         | StrOutputParser()
     )
 
-
 @app.on_event("startup")
 async def startup_event():
     """Initialize components on startup"""
     try:
-        # Validate environment variables
         if not validate_env_vars():
             logger.error("Failed to validate environment variables")
-            # We don't raise an exception here to allow the app to start,
-            # but it will return errors when API endpoints are called
             return
         
-        # Initialize components
         initialize_components()
         logger.info("Application started successfully")
     except Exception as e:
         logger.error(f"Error initializing components: {str(e)}")
-        # Don't raise exception to allow the app to start in a degraded state
-
 
 @app.get("/")
 async def root():
@@ -503,7 +477,6 @@ async def root():
         "version": "1.0.0"
     }
 
-
 @app.exception_handler(HTTPException)
 async def http_exception_handler(request, exc):
     """Custom HTTP exception handler"""
@@ -511,7 +484,6 @@ async def http_exception_handler(request, exc):
         status_code=exc.status_code,
         content={"detail": exc.detail, "status_code": exc.status_code},
     )
-
 
 @app.get("/system-info")
 async def system_info():
@@ -523,29 +495,24 @@ async def system_info():
         "embedding_model": GEMINI_EMBEDDING_MODEL
     }
 
-
 @app.post("/chat", response_model=ChatResponse)
 async def chat(request: ChatRequest):
     """Chat with the legal advisor bot"""
     try:
         start_time = time.time()
         
-        # Validate input
         if not request.question.strip():
             raise HTTPException(
                 status_code=status.HTTP_400_BAD_REQUEST, 
                 detail="Question cannot be empty"
             )
             
-        # Invoke the chain
         answer = chain.invoke({"question": request.question, "chat_history": request.chat_history})
         
-        # Calculate processing time
         processing_time = time.time() - start_time
         
         return ChatResponse(answer=answer, processing_time=processing_time)
     except HTTPException:
-        # Re-raise HTTP exceptions
         raise
     except Exception as e:
         logger.error(f"Error processing chat request: {str(e)}")
@@ -553,7 +520,6 @@ async def chat(request: ChatRequest):
             status_code=status.HTTP_500_INTERNAL_SERVER_ERROR, 
             detail=f"Error processing request: {str(e)}"
         )
-
 
 @app.get("/health", response_model=HealthResponse)
 async def health_check():
@@ -578,7 +544,5 @@ async def health_check():
     
     return HealthResponse(status="healthy", components=components_status)
 
-
 if __name__ == "__main__":
-    # Run the application with hot reload in dev mode
     uvicorn.run("main:app", host="0.0.0.0", port=PORT, reload=DEBUG)

@@ -113,3 +113,175 @@
 2025-06-03 23:57:54,324 - main - ERROR - Error processing chat request: {code: Neo.ClientError.Procedure.ProcedureCallFailed} {message: Failed to invoke procedure `db.index.fulltext.queryNodes`: Caused by: org.apache.lucene.queryparser.classic.TokenMgrError: Lexical error at line 1, column 5796.  Encountered: <EOF> after prefix "/Th\u00f4ng b\u00e1o l\u01b0\u01a1ng, th\u01b0\u1edfng c\u1ee7a C\u00f4ng ty \u0111\u01b0\u1ee3c xem l\u00e0 c\u00e1c ph\u1ee5 l\u1ee5c s\u1eeda \u0111\u1ed5i, b\u1ed5 sung, \u0111i\u1ec1u ch\u1ec9nh k\u00e8m theo H\u0110L\u0110 n\u00e0y, c\u1ee5 th\u1ec3 c\u00e1c kho\u1ea3n tr\u1ea3 cho ng\u01b0\u1eddi lao \u0111\u1ed9ng trong su\u1ed1t qu\u00e1 tr\u00ecnh l\u00e0m vi\u1ec7c. n  Ngh\u0129a v\u1ee5 li\u00ean quan c\u1ee7a ng\u01b0\u1eddi lao \u0111\u1ed9ng  n  Tu\u00e2n th\u1ee7 h\u1ee3p \u0111\u1ed3ng lao \u0111\u1ed9ng; n  Ho\u00e0n th\u00e0nh \u1edf m\u1ee9c hi\u1ec7u qu\u1ea3 nh\u1ea5t c\u00e1c c\u00f4ng vi\u1ec7c \u0111\u01b0\u1ee3c C\u00f4ng ty giao, v\u00e0 ho\u00e0n th\u00e0nh \u1edf m\u1ee9c hi\u1ec7u qu\u1ea3 nh\u1ea5t c\u00e1c c\u00f4ng vi\u1ec7c thu\u1ed9c l\u0129nh v\u1ef1c c\u00f4ng vi\u1ec7c m\u00ecnh ph\u1ee5 tr\u00e1ch; n  Ch\u1ea5p h\u00e0nh theo s\u1ef1 \u0111i\u1ec1u h\u00e0nh c\u1ee7a c\u1ea5p tr\u00ean, ph\u1ed1i h\u1ee3p hi\u1ec7u qu\u1ea3 gi\u1eefa c\u00e1c b\u1ed9 ph\u1eadn, tu\u00e2n th\u1ee7 c\u00e1c quy \u0111\u1ecbnh c\u1ee7a c\u00f4ng ty, ch\u00fa t\u00e2m \u0111\u1ebfn an to\u00e0n lao \u0111\u1ed9ng v\u00e0 b\u1ea3o qu\u1ea3n t\u00e0i s\u1ea3n c\u00f4ng ty; n  B\u1ed3i th\u01b0\u1eddng chi ph\u00ed h\u1ecdc vi\u1ec7c, chi ph\u00ed \u0111\u00e0o t\u1ea1o, c\u00e1c thi\u1ec7t h\u1ea1i v\u1eadt ch\u1ea5t c\u00f3 th\u1ec3 ch\u1ee9ng minh \u0111\u01b0\u1ee3c, n\u1ebfu \u0111\u01a1n ph\u01b0\u01a1ng ch\u1ea5m d\u1ee9t h\u1ee3p \u0111\u1ed3ng, vi ph\u1ea1m th\u1eddi h\u1ea1n b\u00e1o tr\u01b0\u1edbc; n  B\u1ed3i th\u01b0\u1eddng vi ph\u1ea1m v\u1eadt ch\u1ea5t  Theo quy \u0111\u1ecbnh n\u1ed9i b\u1ed9 cu\u1ea3 C\u00f4ng ty v\u00e0 quy \u0111\u1ecbnh cu\u1ea3 ph\u00e1p lu\u1eadt hi\u1ec7n h\u00e0nh; n  C\u00f3 tr\u00e1ch nhi\u1ec7m \u0111\u1ec1 xu\u1ea5t c\u00e1c gi\u1ea3i ph\u00e1p n\u00e2ng cao hi\u1ec7u qu\u1ea3 c\u00f4ng vi\u1ec7c, gi\u1ea3m thi\u1ec3u c\u00e1c r\u1ee7i ro. Khuy\u1ebfn kh\u00edch c\u00e1c \u0111\u00f3ng g\u00f3p n\u00e0y \u0111\u01b0\u1ee3c th\u1ef1c hi\u1ec7n b\u1eb1ng v\u0103n b\u1ea3n. n  Thu\u1ebf TNCN, n\u1ebfu c\u00f3  do ng\u01b0\u1eddi lao \u0111\u1ed9ng \u0111\u00f3ng. C\u00f4ng ty s\u1ebd t\u1ea1m kh\u1ea5u tr\u1eeb tr\u01b0\u1edbc khi chi tr\u1ea3 cho ng\u01b0\u1eddi lao \u0111\u1ed9ng theo quy \u0111\u1ecbnh. n\u0110i\u1ec1u 5  Ngh\u0129a v\u1ee5 v\u00e0 quy\u1ec1n l\u1ee3i c\u1ee7a ng\u01b0\u1eddi s\u1eed d\u1ee5ng lao \u0111\u1ed9ng n1. Ngh\u0129a v\u1ee5  n  B\u1ea3o \u0111\u1ea3m c\u00f3 vi\u1ec7c l\u00e0m v\u00e0 th\u1ef1c hi\u1ec7n \u0111\u1ea7y \u0111\u1ee7 nh\u1eefng \u0111i\u1ec1u \u0111\u00e3 cam k\u1ebft trong h\u1ee3p \u0111\u1ed3ng lao \u0111\u1ed9ng; n  Thanh to\u00e1n \u0111\u1ea7y \u0111\u1ee7, \u0111\u00fang h\u1ea1n c\u00e1c ch\u1ebf \u0111\u1ed9 v\u00e0 quy\u1ec1n l\u1ee3i cho ng\u01b0\u1eddi lao \u0111\u1ed9ng theo h\u1ee3p \u0111\u1ed3ng lao \u0111\u1ed9ng, th\u1ecfa \u01b0\u1edbc lao \u0111\u1ed9ng t\u1eadp th\u1ec3  n\u1ebfu c\u00f3 ; n  T\u00f9y theo k\u1ebft qu\u1ea3 ho\u1ea1t \u0111\u1ed9ng kinh doanh v\u00e0 \u0111i\u1ec1u ki\u1ec7n th\u1ef1c t\u1ebf, ng\u01b0\u1eddi s\u1eed d\u1ee5ng lao \u0111\u1ed9ng s\u1ebd c\u00f3 c\u00e1c \u01b0u \u0111\u00e3i x\u1ee9ng \u0111\u00e1ng cho nh\u00e2n vi\u00ean. n2. Quy\u1ec1n l\u1ee3i  n  \u0110i\u1ec1u h\u00e0nh ng\u01b0\u1eddi lao \u0111\u1ed9ng ho\u00e0n th\u00e0nh c\u00f4ng vi\u1ec7c theo h\u1ee3p \u0111\u1ed3ng  b\u1ed1 tr\u00ed, \u0111i\u1ec1u chuy\u1ec3n, t\u1ea1m ng\u1eebng c\u00f4ng t\u00e1c,\u2026 ; n  T\u1ea1m ho\u00e3n, ch\u1ea5m d\u1ee9t h\u1ee3p \u0111\u1ed3ng lao \u0111\u1ed9ng, k\u1ef7 lu\u1eadt ng\u01b0\u1eddi lao \u0111\u1ed9ng theo quy \u0111\u1ecbnh c\u1ee7a ph\u00e1p lu\u1eadt, tho\u1ea3 \u01b0\u1edbc lao \u0111\u1ed9ng t\u1eadp th\u1ec3  n\u1ebfu c\u00f3  v\u00e0 n\u1ed9i quy lao \u0111\u1ed9ng cu\u1ea3 doanh nghi\u1ec7p. n\u0110i\u1ec1u 7  \u0110i\u1ec1u kho\u1ea3n thi h\u00e0nh n  Nh\u1eefng v\u1ea5n \u0111\u1ec1 v\u1ec1 lao \u0111\u1ed9ng kh\u00f4ng ghi trong h\u1ee3p \u0111\u1ed3ng lao \u0111\u1ed9ng n\u00e0y th\u00ec \u00e1p d\u1ee5ng quy \u0111\u1ecbnh cu\u1ea3 tho\u1ea3 \u01b0\u1edbc t\u1eadp th\u1ec3, tr\u01b0\u1eddng h\u1ee3p ch\u01b0a c\u00f3 tho\u1ea3 \u01b0\u1edbc th\u00ec \u00e1p d\u1ee5ng quy \u0111\u1ecbnh c\u1ee7a ph\u00e1p lu\u1eadt lao \u0111\u1ed9ng; n  H\u1ee3p \u0111\u1ed3ng n\u00e0y \u0111\u01b0\u1ee3c l\u1eadp th\u00e0nh 2 b\u1ea3n c\u00f3 gi\u00e1 tr\u1ecb ph\u00e1p l\u00fd nh\u01b0 nhau, m\u1ed7i b\u00ean gi\u1eef 1 b\u1ea3n v\u00e0 c\u00f3 hi\u1ec7u l\u1ef1c k\u1ec3 t\u1eeb ng\u00e0y k\u00fd. n  Khi k\u00fd k\u1ebft c\u00e1c ph\u1ee5 l\u1ee5c h\u1ee3p \u0111\u1ed3ng lao \u0111\u1ed9ng th\u00ec n\u1ed9i dung c\u1ee7a ph\u1ee5 l\u1ee5c c\u0169ng c\u00f3 gi\u00e1 tr\u1ecb nh\u01b0 c\u00e1c n\u1ed9i dung cu\u1ea3 b\u1ea3n h\u1ee3p \u0111\u1ed3ng n\u00e0y. n n\u0110\u1ea0I DI\u1ec6N V\u00c0 NH\u00c2N DANH NG\u01af\u1edcI S\u1eec D\u1ee4NG LAO \u0110\u1ed8NG n K\u00fd, ghi r\u00f5 h\u1ecd t\u00ean v\u00e0 \u0111\u00f3ng d\u1ea5u  nNG\u01af\u1edcI LAO \u0110\u1ed8NG n K\u00fd v\u00e0 ghi r\u00f5 h\u1ecd t\u00ean" (in lexical state 2)}
 2025-06-03 23:58:26,092 - main - ERROR - Error processing chat request: {code: Neo.ClientError.Procedure.ProcedureCallFailed} {message: Failed to invoke procedure `db.index.fulltext.queryNodes`: Caused by: org.apache.lucene.queryparser.classic.TokenMgrError: Lexical error at line 1, column 30.  Encountered: <EOF> after prefix "/th\u00e1ng~2 OR 10.000.000~2" (in lexical state 2)}
 2025-06-04 00:00:21,352 - main - ERROR - Error processing chat request: {code: Neo.ClientError.Procedure.ProcedureCallFailed} {message: Failed to invoke procedure `db.index.fulltext.queryNodes`: Caused by: org.apache.lucene.queryparser.classic.TokenMgrError: Lexical error at line 1, column 799.  Encountered: <EOF> after prefix "/2010 \u2013 N\u01a1i c\u1ea5p  C\u00f4ng an th\u00e0nh ph\u1ed1 H\u00e0 N\u1ed9i n\u0110\u1ecba ch\u1ec9   T\u00e2y S\u01a1n, \u0110\u1ed1ng \u0110a, H\u00e0 N\u1ed9i n\u0110i\u1ec7n tho\u1ea1i   0857490394" (in lexical state 2)}
+2025-06-04 00:08:17,404 - numexpr.utils - INFO - NumExpr defaulting to 16 threads.
+2025-06-04 00:08:22,873 - main - INFO - Components initialized successfully
+2025-06-04 00:08:22,873 - main - INFO - Application started successfully
+2025-06-04 00:09:17,145 - langchain_google_genai.chat_models - WARNING - Retrying langchain_google_genai.chat_models._chat_with_retry.<locals>._chat_with_retry in 2.0 seconds as it raised ResourceExhausted: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. [violations {
+}
+, links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, retry_delay {
+  seconds: 42
+}
+].
+2025-06-04 00:09:19,602 - main - ERROR - Error processing chat request: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. [violations {
+}
+, links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, retry_delay {
+  seconds: 40
+}
+]
+2025-06-04 00:28:20,730 - numexpr.utils - INFO - NumExpr defaulting to 16 threads.
+2025-06-04 00:28:27,779 - main - INFO - Components initialized successfully
+2025-06-04 00:28:27,780 - main - INFO - Application started successfully
+2025-06-04 00:30:08,767 - langchain_google_genai.chat_models - WARNING - Retrying langchain_google_genai.chat_models._chat_with_retry.<locals>._chat_with_retry in 2.0 seconds as it raised ResourceExhausted: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. [violations {
+}
+, links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, retry_delay {
+  seconds: 51
+}
+].
+2025-06-04 00:30:11,275 - main - ERROR - Error processing chat request: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. [violations {
+}
+, links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, retry_delay {
+  seconds: 48
+}
+]
+2025-06-04 00:33:32,525 - numexpr.utils - INFO - NumExpr defaulting to 16 threads.
+2025-06-04 00:33:37,832 - main - INFO - Components initialized successfully
+2025-06-04 00:33:37,832 - main - INFO - Application started successfully
+2025-06-04 00:35:07,535 - langchain_google_genai.chat_models - WARNING - Retrying langchain_google_genai.chat_models._chat_with_retry.<locals>._chat_with_retry in 2.0 seconds as it raised ResourceExhausted: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. [violations {
+}
+, links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, retry_delay {
+  seconds: 52
+}
+].
+2025-06-04 00:35:09,803 - main - ERROR - Error processing chat request: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. [violations {
+}
+, links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, retry_delay {
+  seconds: 50
+}
+]
+2025-06-04 00:36:03,376 - langchain_google_genai.chat_models - WARNING - Retrying langchain_google_genai.chat_models._chat_with_retry.<locals>._chat_with_retry in 2.0 seconds as it raised ResourceExhausted: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. [violations {
+}
+, links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, retry_delay {
+  seconds: 56
+}
+].
+2025-06-04 00:36:05,822 - main - ERROR - Error processing chat request: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. [violations {
+}
+, links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, retry_delay {
+  seconds: 54
+}
+]
+2025-06-04 00:41:11,296 - langchain_google_genai.chat_models - WARNING - Retrying langchain_google_genai.chat_models._chat_with_retry.<locals>._chat_with_retry in 2.0 seconds as it raised ResourceExhausted: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. [violations {
+}
+, links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, retry_delay {
+  seconds: 48
+}
+].
+2025-06-04 00:42:08,683 - main - ERROR - Error processing chat request: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. [violations {
+}
+, links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, retry_delay {
+  seconds: 51
+}
+]
+2025-06-04 00:42:54,904 - numexpr.utils - INFO - NumExpr defaulting to 16 threads.
+2025-06-04 00:43:00,960 - main - INFO - Components initialized successfully
+2025-06-04 00:43:00,960 - main - INFO - Application started successfully
+2025-06-04 00:44:08,349 - langchain_google_genai.chat_models - WARNING - Retrying langchain_google_genai.chat_models._chat_with_retry.<locals>._chat_with_retry in 2.0 seconds as it raised ResourceExhausted: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. [violations {
+}
+, links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, retry_delay {
+  seconds: 51
+}
+].
+2025-06-04 00:44:10,802 - main - ERROR - Error processing chat request: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. [violations {
+}
+, links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, retry_delay {
+  seconds: 49
+}
+]
+2025-06-04 01:02:23,582 - numexpr.utils - INFO - NumExpr defaulting to 16 threads.
+2025-06-04 01:02:27,198 - langchain_google_genai.chat_models - WARNING - Unexpected argument 'request_timeout' provided to ChatGoogleGenerativeAI. Did you mean: 'timeout'?
+2025-06-04 01:02:29,313 - main - INFO - Components initialized successfully with optimization
+2025-06-04 01:02:29,314 - main - INFO - Optimized application started successfully
+2025-06-04 01:02:33,169 - main - INFO - Processing question: 2 characters
+2025-06-04 01:02:33,171 - main - ERROR - Error processing chat request: 'dict' object has no attribute 'encode'
+2025-06-04 01:02:38,008 - main - INFO - Processing question: 2 characters
+2025-06-04 01:02:38,009 - main - ERROR - Error processing chat request: 'dict' object has no attribute 'encode'
+2025-06-04 01:06:26,213 - numexpr.utils - INFO - NumExpr defaulting to 16 threads.
+2025-06-04 01:06:32,042 - main - INFO - Components initialized successfully
+2025-06-04 01:06:32,043 - main - INFO - Application started successfully
+2025-06-04 01:06:38,382 - numexpr.utils - INFO - NumExpr defaulting to 16 threads.
+2025-06-04 01:06:43,506 - main - INFO - Components initialized successfully
+2025-06-04 01:06:43,506 - main - INFO - Application started successfully
+2025-06-04 01:14:02,159 - numexpr.utils - INFO - NumExpr defaulting to 16 threads.
+2025-06-04 01:14:05,446 - main - ERROR - Error initializing components: Invalid format string
+2025-06-04 01:14:48,193 - main - ERROR - Error processing chat request: 'NoneType' object has no attribute 'invoke'
+2025-06-04 01:15:03,720 - numexpr.utils - INFO - NumExpr defaulting to 16 threads.
+2025-06-04 01:15:09,927 - main - INFO - Components initialized successfully
+2025-06-04 01:15:09,927 - main - INFO - Application started successfully
+2025-06-04 01:18:20,375 - main - ERROR - Error processing chat request: {code: Neo.ClientError.Procedure.ProcedureCallFailed} {message: Failed to invoke procedure `db.index.fulltext.queryNodes`: Caused by: org.apache.lucene.queryparser.classic.TokenMgrError: Lexical error at line 1, column 20.  Encountered: <EOF> after prefix "/H\u0110L\u0110~2" (in lexical state 2)}
+2025-06-04 01:19:45,030 - main - ERROR - Error processing chat request: {code: Neo.ClientError.Procedure.ProcedureCallFailed} {message: Failed to invoke procedure `db.index.fulltext.queryNodes`: Caused by: org.apache.lucene.queryparser.classic.TokenMgrError: Lexical error at line 1, column 779.  Encountered: <EOF> after prefix "/2010 \u2013 N\u01a1i c\u1ea5p  C\u00f4ng an th\u00e0nh ph\u1ed1 H\u00e0 N\u1ed9i \u0110\u1ecba ch\u1ec9   T\u00e2y S\u01a1n, \u0110\u1ed1ng \u0110a, H\u00e0 N\u1ed9i \u0110i\u1ec7n tho\u1ea1i   0857490394" (in lexical state 2)}
+2025-06-04 01:26:21,902 - main - ERROR - Error processing chat request: {code: Neo.ClientError.Procedure.ProcedureCallFailed} {message: Failed to invoke procedure `db.index.fulltext.queryNodes`: Caused by: org.apache.lucene.queryparser.classic.TokenMgrError: Lexical error at line 1, column 19.  Encountered: <EOF> after prefix "/n\u0103m~2" (in lexical state 2)}
+2025-06-04 01:27:36,051 - main - ERROR - Error processing chat request: {code: Neo.ClientError.Procedure.ProcedureCallFailed} {message: Failed to invoke procedure `db.index.fulltext.queryNodes`: Caused by: java.lang.IllegalArgumentException: input automaton is too large: 1001}
+2025-06-04 01:31:38,060 - main - ERROR - Error processing chat request: {code: Neo.ClientError.Procedure.ProcedureCallFailed} {message: Failed to invoke procedure `db.index.fulltext.queryNodes`: Caused by: org.apache.lucene.queryparser.classic.TokenMgrError: Lexical error at line 1, column 19.  Encountered: <EOF> after prefix "/n\u0103m~2" (in lexical state 2)}
+2025-06-04 01:34:27,815 - main - INFO - Search query: kiem tra hop dong sau day loai hop dong hop dong lao dong khong xac dinh thoi han dia diem lam viec ...
+2025-06-04 01:53:15,009 - main - ERROR - Error processing chat request: {code: Neo.ClientError.Procedure.ProcedureCallFailed} {message: Failed to invoke procedure `db.index.fulltext.queryNodes`: Caused by: java.lang.IllegalArgumentException: input automaton is too large: 1001}
+2025-06-04 01:53:47,759 - main - ERROR - Error processing chat request: {code: Neo.ClientError.Procedure.ProcedureCallFailed} {message: Failed to invoke procedure `db.index.fulltext.queryNodes`: Caused by: org.apache.lucene.queryparser.classic.TokenMgrError: Lexical error at line 1, column 19.  Encountered: <EOF> after prefix "/n\u0103m~2" (in lexical state 2)}
+2025-06-20 15:54:01,038 - numexpr.utils - INFO - NumExpr defaulting to 16 threads.
+2025-06-20 15:54:02,379 - main - ERROR - Error initializing components: Cannot resolve address 1704bf0f.databases.neo4j.io:7687
+2025-06-20 15:55:00,344 - main - ERROR - Error processing chat request: 'NoneType' object has no attribute 'invoke'
+2025-06-20 15:55:36,849 - main - ERROR - Error processing chat request: 'NoneType' object has no attribute 'invoke'
+2025-06-20 15:55:38,075 - main - ERROR - Error processing chat request: 'NoneType' object has no attribute 'invoke'
+2025-06-20 16:02:26,758 - numexpr.utils - INFO - NumExpr defaulting to 16 threads.
+2025-06-20 16:02:27,792 - neo4j.pool - ERROR - Unable to retrieve routing information
+2025-06-20 16:02:27,793 - main - ERROR - Error initializing components: Could not connect to Neo4j database. Please ensure that the url is correct
+2025-06-20 16:03:53,128 - main - ERROR - Error processing chat request: 'NoneType' object has no attribute 'invoke'
+2025-06-20 16:04:02,392 - numexpr.utils - INFO - NumExpr defaulting to 16 threads.
+2025-06-20 16:04:08,995 - main - INFO - Components initialized successfully
+2025-06-20 16:04:08,995 - main - INFO - Application started successfully
